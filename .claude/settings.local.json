@@ -3,7 +3,14 @@
     "allow": [
       "Bash(npm install:*)",
       "Bash(npx tsc:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(venv/Scripts/pip install:*)",
+      "Bash(venv/Scripts/python -c \"import app\" 2>&1)",
+      "Bash(venv/Scripts/python -c \"import app; print\\('OK'\\)\" 2>&1)",
+      "Bash(venv/Scripts/python -c \"\nimport psycopg2\nconn = psycopg2.connect\\(dbname='postgres', user='postgres', password='0000', host='localhost'\\)\nconn.autocommit = True\nconn.cursor\\(\\).execute\\('CREATE DATABASE \\\\\"UserVault\\\\\"'\\)\nconn.close\\(\\)\nprint\\('Database created'\\)\n\" 2>&1)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill:*)",
+      "Bash(venv/Scripts/python -c \"\nfrom database import engine\nfrom models.userModel import Base\nBase.metadata.drop_all\\(bind=engine\\)\nBase.metadata.create_all\\(bind=engine\\)\nprint\\('Table recreated'\\)\n\" 2>&1)"
     ]
   }
 }

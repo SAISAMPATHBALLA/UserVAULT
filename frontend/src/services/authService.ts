@@ -1,10 +1,10 @@
 import type { RegisterPayload, AuthResponse } from "../types/AuthService"
-import { API_BASE_URL } from "../constants/authConstants"
+import { API_BACKEND_URL } from "../constants/authConstants"
 
 
 export async function register(payload: RegisterPayload): Promise<AuthResponse> {
   
-  const response = await fetch(`${API_BASE_URL}/auth/register`, {
+  const response = await fetch(`${API_BACKEND_URL}/auth/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -14,7 +14,8 @@ export async function register(payload: RegisterPayload): Promise<AuthResponse> 
   })
 
   const data: AuthResponse = await response.json()
-
+  console.log(data);
+  
   if (!response.ok) {
     throw new Error(data.message ?? 'Registration failed')
   }
