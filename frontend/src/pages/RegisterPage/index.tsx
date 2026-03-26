@@ -1,8 +1,10 @@
 import { Box, Container, Paper } from '@mui/material'
 import RegisterHeader from '../../components/register/RegisterHeader'
 import RegisterForm from '../../components/register/RegisterForm'
-
+import { useGetUserDetailsQuery } from '../../apis/authApi';
 export default function RegisterPage() {
+    const response = useGetUserDetailsQuery(null)
+  console.log(response);
   return (
     <Box
       sx={{

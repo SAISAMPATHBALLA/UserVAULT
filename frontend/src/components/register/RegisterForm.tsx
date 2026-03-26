@@ -39,10 +39,10 @@ const registerSchema = z
 type RegisterFormData = z.infer<typeof registerSchema>
 
 export default function RegisterForm() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirm, setShowConfirm] = useState(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [showConfirm, setShowConfirm] = useState<boolean>(false)
   const [serverError, setServerError] = useState<string | null>(null)
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState<boolean>(false)
 
   const {
     register,
