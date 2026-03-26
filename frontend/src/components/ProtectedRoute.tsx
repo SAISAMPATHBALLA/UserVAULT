@@ -8,6 +8,6 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
 }
  export const  ProtectedRouteforAuth = ({ children }: { children: ReactNode })=> {
   const user = localStorage.getItem('user')
-  if (user) return <Navigate to="/dashboard" replace />
+  if (user) return <Navigate to="/home" replace />
   return <>{children}</>
 }
