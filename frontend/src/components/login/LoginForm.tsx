@@ -52,7 +52,7 @@ export default function LoginForm() {
 
         console.log('Login successful:', res.data.name);
 
-        navigate('/dashboard')
+        navigate('/home')
       } else {
         setServerError(res.message)
       }
