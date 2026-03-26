@@ -18,8 +18,9 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import { login } from '../../services/authService'
-
+import { useLoginUserMutation } from '../../apis/authApi'
+import { useDispatch } from 'react-redux'
+import { setUserDetails } from '../../store/MainSlice'
 const loginSchema = z.object({
   email: z.string().email('Enter a valid email address'),
   password: z.string().min(1, 'Password is required'),
@@ -28,14 +29,15 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>
 
 export default function LoginForm() {
+  const [loginUser, { isLoading }] = useLoginUserMutation()
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [serverError, setServerError] = useState<string | null>(null)
   const navigate = useNavigate()
-
+ const dispatch = useDispatch()
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   })
@@ -43,9 +45,13 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     setServerError(null)
     try {
-      const res = await login({ email: data.email, password: data.password })
+      const res = await loginUser({ email: data.email, password: data.password }).unwrap()
       if (res.success && res.data) {
-        localStorage.setItem('user', JSON.stringify(res.data))
+        localStorage.setItem('user', JSON.stringify(res.data));
+        dispatch(setUserDetails(res.data));
+
+        console.log('Login successful:', res.data.name);
+
         navigate('/dashboard')
       } else {
         setServerError(res.message)
@@ -118,7 +124,7 @@ export default function LoginForm() {
         type="submit"
         fullWidth
         variant="contained"
-        disabled={isSubmitting}
+        disabled={isLoading}
         sx={{
           mt: 3,
           mb: 1,
@@ -136,7 +142,7 @@ export default function LoginForm() {
           '&:disabled': { opacity: 0.7 },
         }}
       >
-        {isSubmitting ? <CircularProgress size={24} sx={{ color: '#fff' }} /> : 'Sign In'}
+        {isLoading ? <CircularProgress size={24} sx={{ color: '#fff' }} /> : 'Sign In'}
       </Button>
 
       <Divider sx={{ my: 2 }}>
