@@ -1,7 +1,10 @@
 import React from 'react'
-
+import store from './store/store.ts'
+import { Provider } from 'react-redux'
 export default function App() {
   return (
-    <div>App</div>
+    <Provider store={store}>
+      <div>App</div>
+    </Provider>
   )
 }
