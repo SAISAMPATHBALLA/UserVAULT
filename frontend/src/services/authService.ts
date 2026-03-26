@@ -1,25 +1,9 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000'
+import type { RegisterPayload, AuthResponse } from "../types/AuthService"
+import { API_BASE_URL } from "../constants/authConstants"
 
-export interface RegisterPayload {
-  name: string
-  email: string
-  password: string
-}
-
-export interface AuthResponse {
-  success: boolean
-  message: string
-  data?: {
-    token: string
-    user: {
-      id: string
-      name: string
-      email: string
-    }
-  }
-}
 
 export async function register(payload: RegisterPayload): Promise<AuthResponse> {
+  
   const response = await fetch(`${API_BASE_URL}/auth/register`, {
     method: 'POST',
     headers: {
