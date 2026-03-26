@@ -3,7 +3,7 @@ import RegisterHeader from '../../components/register/RegisterHeader'
 import RegisterForm from '../../components/register/RegisterForm'
 import { useGetUserDetailsQuery } from '../../apis/getUserDetails';
 export default function RegisterPage() {
-    const response = useGetUserDetailsQuery(null)
+    const response = useGetUserDetailsQuery();
   console.log(response);
   return (
     <Box

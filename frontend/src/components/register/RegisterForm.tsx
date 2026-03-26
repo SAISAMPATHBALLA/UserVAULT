@@ -19,8 +19,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { useNavigate } from 'react-router-dom'
-import { register as registerUser } from '../../services/authService'
-
+import { useRegisterUserMutation } from '../../apis/authApi'
 const registerSchema = z
   .object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -40,6 +39,7 @@ const registerSchema = z
 type RegisterFormData = z.infer<typeof registerSchema>
 
 export default function RegisterForm() {
+  const [registerUser, { isLoading }] = useRegisterUserMutation()
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const [showConfirm, setShowConfirm] = useState<boolean>(false)
   const [serverError, setServerError] = useState<string | null>(null)
@@ -48,7 +48,7 @@ export default function RegisterForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   })
@@ -56,12 +56,12 @@ export default function RegisterForm() {
   const onSubmit = async (data: RegisterFormData) => {
     setServerError(null)
     try {
-      await registerUser({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-      })
-      navigate('/login')
+      const res = await registerUser({ name: data.name, email: data.email, password: data.password }).unwrap()
+      if (res.success) {
+        navigate('/login')
+      } else {
+        setServerError(res.message)
+      }
     } catch (err) {
       setServerError(err instanceof Error ? err.message : 'Something went wrong')
     }
@@ -179,7 +179,7 @@ export default function RegisterForm() {
         type="submit"
         fullWidth
         variant="contained"
-        disabled={isSubmitting}
+        disabled={isLoading}
         sx={{
           mt: 3,
           mb: 1,
@@ -197,7 +197,7 @@ export default function RegisterForm() {
           '&:disabled': { opacity: 0.7 },
         }}
       >
-        {isSubmitting ? <CircularProgress size={24} sx={{ color: '#fff' }} /> : 'Create Account'}
+        {isLoading ? <CircularProgress size={24} sx={{ color: '#fff' }} /> : 'Create Account'}
       </Button>
 
       <Divider sx={{ my: 2 }}>

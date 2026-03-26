@@ -6,8 +6,8 @@ export const registerUserApi = createApi({
   reducerPath: 'registerUserApi',
   baseQuery: fetchBaseQuery({ baseUrl: API_BACKEND_URL }),
   endpoints: (build) => ({
-    getRegisterUserApi: build.query<AuthResponse, RegisterPayload>({
-      query: () => ({ url: `/auth/register`, method: 'POST' }),
+    registerUser: build.mutation<AuthResponse, RegisterPayload>({
+      query: (payload) => ({ url: `/auth/register`, method: 'POST', body: payload }),
     }),
     loginUser: build.mutation<AuthResponse, LoginPayload>({
       query: (payload) => ({ url: `/auth/login`, method: 'POST', body: payload }),
@@ -15,4 +15,4 @@ export const registerUserApi = createApi({
   }),
 })
 
-export const { useGetRegisterUserApiQuery, useLoginUserMutation } = registerUserApi
+export const { useRegisterUserMutation, useLoginUserMutation } = registerUserApi
