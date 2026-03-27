@@ -9,10 +9,11 @@ import {
 import ViewModuleIcon from '@mui/icons-material/ViewModule'
 import ViewListIcon from '@mui/icons-material/ViewList'
 import LogoutIcon from '@mui/icons-material/Logout'
+import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined'
 import type { HomeHeaderProps } from '../../types/props'
 
 
-export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userName }: HomeHeaderProps) {
+export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userName, onDashboard }: HomeHeaderProps) {
   const initial = userName ? userName.charAt(0).toUpperCase() : 'U'
 
   return (
@@ -46,6 +47,24 @@ export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userN
       >
         UserVault
       </Typography>
+
+      {/* Center nav */}
+      <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
+        {onDashboard && (
+          <Button
+            startIcon={<BarChartOutlinedIcon sx={{ fontSize: '0.95rem' }} />}
+            onClick={onDashboard}
+            size="small"
+            sx={{
+              color: 'rgba(255,255,255,0.55)', textTransform: 'none', fontWeight: 600,
+              fontSize: '0.82rem', px: 1.5, borderRadius: 2,
+              '&:hover': { background: 'rgba(167,139,250,0.12)', color: 'rgba(255,255,255,0.9)' },
+            }}
+          >
+            Dashboard
+          </Button>
+        )}
+      </Box>
 
       {/* Layout toggle — hidden on mobile */}
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 0.5 }}>

@@ -7,7 +7,7 @@ import {
   useUsersByHairColorQuery,
 } from '../../apis/getUserDetails'
 import { useDebounce } from '../../hooks/useDebounce'
-import HomeHeader from '../../components/home/HomeHeader'
+import AppNav from '../../components/ui/AppNav'
 import SearchBar from '../../components/home/SearchBar'
 import UserGrid from '../../components/home/UserGrid'
 import PaginationBar from '../../components/home/PaginationBar'
@@ -81,11 +81,12 @@ export default function HomePage() {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      <HomeHeader
+      <AppNav
+        currentPage="home"
+        userName={userName}
+        onLogout={handleLogout}
         layoutMode={layoutMode}
         onLayoutToggle={setLayoutMode}
-        onLogout={handleLogout}
-        userName={userName}
       />
 
       <Container maxWidth="xl" sx={{ flex: 1, py: 3, px: { xs: 2, sm: 3 } }}>

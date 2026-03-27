@@ -1,8 +1,52 @@
-/* *, *::before, *::after {
-  box-sizing: border-box;
-} */
 
 body {
   margin: 0;
   padding: 0;
+}
+
+
+.rs-navbar .rs-nav-item.rs-nav-item-active,
+.rs-navbar .rs-nav-item.rs-nav-item-active:focus {
+  color: #a78bfa !important;
+}
+.rs-navbar .rs-nav-subtle .rs-nav-item.rs-nav-item-active::before {
+  background-color: #a78bfa !important;
+}
+
+.rs-navbar .rs-nav-item:hover {
+  color: #c4b5fd !important;
+  background: rgba(167,139,250,0.1) !important;
+}
+
+.rs-navbar.rs-navbar-default {
+  background: transparent !important;
+}
+
+.rs-panel.app-glass-panel {
+  background: rgba(255,255,255,0.035) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 12px !important;
+}
+.rs-panel.app-glass-panel .rs-panel-body {
+  padding: 16px;
+}
+
+.rs-progress-line-bg {
+  background-color: #7c3aed !important;
+}
+
+.rs-loader-spin::before,
+.rs-loader-spin::after {
+  border-color: #a78bfa transparent transparent !important;
+}
+.rs-loader-content {
+  color: rgba(255,255,255,0.55) !important;
+}
+
+.rs-navbar .rs-btn-subtle {
+  color: rgba(255,255,255,0.55) !important;
+}
+.rs-navbar .rs-btn-subtle:hover {
+  background: rgba(167,139,250,0.12) !important;
+  color: rgba(255,255,255,0.9) !important;
 }

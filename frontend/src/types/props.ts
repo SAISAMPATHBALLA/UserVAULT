@@ -21,6 +21,7 @@ export interface HomeHeaderProps {
   onLayoutToggle: (mode: 'grid' | 'list') => void
   onLogout: () => void
   userName: string
+  onDashboard?: () => void
 }
 export interface SearchBarProps {
   value: string
