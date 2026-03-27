@@ -51,6 +51,9 @@ export const usersDetailsApi = createApi({
     getUserTodosById: build.query<TodosResponse, number>({
       query: (id) => ({ url: `users/${id}/todos` }),
     }),
+    getAllUsers: build.query<UsersResponse, void>({
+      query: () => ({ url: 'users', params: { limit: 0 } }),
+    }),
   }),
 })
 
@@ -63,4 +66,5 @@ export const {
   useGetUserCartsByIdQuery,
   useGetUserPostsByIdQuery,
   useGetUserTodosByIdQuery,
+  useGetAllUsersQuery,
 } = usersDetailsApi

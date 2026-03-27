@@ -20,6 +20,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { useNavigate } from 'react-router-dom'
 import { useRegisterUserMutation } from '../../apis/authApi'
+
 const registerSchema = z
   .object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -45,11 +46,7 @@ export default function RegisterForm() {
   const [serverError, setServerError] = useState<string | null>(null)
   const navigate = useNavigate()
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterFormData>({
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   })
 
@@ -68,74 +65,45 @@ export default function RegisterForm() {
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+    <Box sx={{width:'100%'}} component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
       {serverError && (
-        <Alert severity="error" sx={{ mb: 2, borderRadius: 2 }}>
+        <Alert severity="error" sx={{ mb: 2, borderRadius: 2, background: 'rgba(239,68,68,0.1)', color: '#fca5a5', border: '1px solid rgba(239,68,68,0.2)', '& .MuiAlert-icon': { color: '#f87171' } }}>
           {serverError}
         </Alert>
       )}
 
       <TextField
-        fullWidth
-        label="Full Name"
-        autoComplete="name"
-        autoFocus
-        margin="normal"
-        error={!!errors.name}
-        helperText={errors.name?.message}
+        fullWidth label="Full Name" autoComplete="name" autoFocus margin="normal"
+        error={!!errors.name} helperText={errors.name?.message}
         InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <PersonOutlineIcon sx={{ color: '#9ca3af' }} />
-            </InputAdornment>
-          ),
+          startAdornment: <InputAdornment position="start"><PersonOutlineIcon sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '1.1rem' }} /></InputAdornment>,
         }}
         sx={fieldStyles}
         {...register('name')}
       />
 
       <TextField
-        fullWidth
-        label="Email Address"
-        type="email"
-        autoComplete="email"
-        margin="normal"
-        error={!!errors.email}
-        helperText={errors.email?.message}
+        fullWidth label="Email Address" type="email" autoComplete="email" margin="normal"
+        error={!!errors.email} helperText={errors.email?.message}
         InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <EmailOutlinedIcon sx={{ color: '#9ca3af' }} />
-            </InputAdornment>
-          ),
+          startAdornment: <InputAdornment position="start"><EmailOutlinedIcon sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '1.1rem' }} /></InputAdornment>,
         }}
         sx={fieldStyles}
         {...register('email')}
       />
 
       <TextField
-        fullWidth
-        label="Password"
+        fullWidth label="Password"
         type={showPassword ? 'text' : 'password'}
-        autoComplete="new-password"
-        margin="normal"
-        error={!!errors.password}
-        helperText={errors.password?.message}
+        autoComplete="new-password" margin="normal"
+        error={!!errors.password} helperText={errors.password?.message}
         InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <LockOutlinedIcon sx={{ color: '#9ca3af' }} />
-            </InputAdornment>
-          ),
+          startAdornment: <InputAdornment position="start"><LockOutlinedIcon sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '1.1rem' }} /></InputAdornment>,
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton
-                onClick={() => setShowPassword((v) => !v)}
-                edge="end"
-                size="small"
-                tabIndex={-1}
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
+              <IconButton onClick={() => setShowPassword(v => !v)} edge="end" size="small" tabIndex={-1}
+                sx={{ color: 'rgba(255,255,255,0.35)', '&:hover': { color: '#a78bfa' } }}>
+                {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
               </IconButton>
             </InputAdornment>
           ),
@@ -145,28 +113,17 @@ export default function RegisterForm() {
       />
 
       <TextField
-        fullWidth
-        label="Confirm Password"
+        fullWidth label="Confirm Password"
         type={showConfirm ? 'text' : 'password'}
-        autoComplete="new-password"
-        margin="normal"
-        error={!!errors.confirmPassword}
-        helperText={errors.confirmPassword?.message}
+        autoComplete="new-password" margin="normal"
+        error={!!errors.confirmPassword} helperText={errors.confirmPassword?.message}
         InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <LockOutlinedIcon sx={{ color: '#9ca3af' }} />
-            </InputAdornment>
-          ),
+          startAdornment: <InputAdornment position="start"><LockOutlinedIcon sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '1.1rem' }} /></InputAdornment>,
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton
-                onClick={() => setShowConfirm((v) => !v)}
-                edge="end"
-                size="small"
-                tabIndex={-1}
-              >
-                {showConfirm ? <VisibilityOff /> : <Visibility />}
+              <IconButton onClick={() => setShowConfirm(v => !v)} edge="end" size="small" tabIndex={-1}
+                sx={{ color: 'rgba(255,255,255,0.35)', '&:hover': { color: '#a78bfa' } }}>
+                {showConfirm ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
               </IconButton>
             </InputAdornment>
           ),
@@ -175,49 +132,30 @@ export default function RegisterForm() {
         {...register('confirmPassword')}
       />
 
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        disabled={isLoading}
+      <Button type="submit" fullWidth variant="contained" disabled={isLoading}
         sx={{
-          mt: 3,
-          mb: 1,
-          py: 1.5,
-          borderRadius: 2,
-          fontWeight: 600,
-          fontSize: '1rem',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',
-          textTransform: 'none',
-          '&:hover': {
-            background: 'linear-gradient(135deg, #5a6fd6 0%, #6a4292 100%)',
-            boxShadow: '0 6px 20px rgba(102, 126, 234, 0.5)',
-          },
-          '&:disabled': { opacity: 0.7 },
+          mt: 3, mb: 1, py: 1.4, borderRadius: 2,
+          fontWeight: 600, fontSize: '0.95rem', textTransform: 'none',
+          background: 'linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%)',
+          boxShadow: '0 4px 15px rgba(167,139,250,0.35)',
+          '&:hover': { background: 'linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%)', boxShadow: '0 6px 20px rgba(167,139,250,0.5)' },
+          '&:disabled': { opacity: 0.6 },
         }}
       >
-        {isLoading ? <CircularProgress size={24} sx={{ color: '#fff' }} /> : 'Create Account'}
+        {isLoading ? <CircularProgress size={22} sx={{ color: '#fff' }} /> : 'Create Account'}
       </Button>
 
-      <Divider sx={{ my: 2 }}>
-        <Typography variant="caption" sx={{ color: '#9ca3af' }}>
+      <Divider sx={{ my: 2, borderColor: 'rgba(255,255,255,0.08)' }}>
+        <Typography variant="caption" sx={{ color: 'rgba(255,255,255,0.3)', px: 1 }}>
           Already have an account?
         </Typography>
       </Divider>
 
-      <Button
-        fullWidth
-        variant="outlined"
-        href="/login"
+      <Button fullWidth variant="outlined" href="/login"
         sx={{
-          py: 1.2,
-          borderRadius: 2,
-          fontWeight: 600,
-          textTransform: 'none',
-          borderColor: '#e5e7eb',
-          color: '#374151',
-          '&:hover': { borderColor: '#667eea', color: '#667eea', background: '#f5f3ff' },
+          py: 1.2, borderRadius: 2, fontWeight: 600, textTransform: 'none',
+          borderColor: 'rgba(167,139,250,0.25)', color: '#c4b5fd',
+          '&:hover': { borderColor: '#a78bfa', color: '#a78bfa', background: 'rgba(167,139,250,0.08)' },
         }}
       >
         Sign in instead
@@ -229,8 +167,13 @@ export default function RegisterForm() {
 const fieldStyles = {
   '& .MuiOutlinedInput-root': {
     borderRadius: 2,
-    '&:hover fieldset': { borderColor: '#667eea' },
-    '&.Mui-focused fieldset': { borderColor: '#667eea' },
+    color: '#e2e8f0',
+    background: 'rgba(255,255,255,0.05)',
+    '& fieldset': { borderColor: 'rgba(255,255,255,0.1)' },
+    '&:hover fieldset': { borderColor: 'rgba(167,139,250,0.4)' },
+    '&.Mui-focused fieldset': { borderColor: '#a78bfa' },
   },
-  '& label.Mui-focused': { color: '#667eea' },
+  '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.4)' },
+  '& label.Mui-focused': { color: '#a78bfa' },
+  '& .MuiFormHelperText-root': { color: '#f87171' },
 }

@@ -1,6 +1,7 @@
-import { Box, Container, Paper } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import LoginHeader from '../../components/login/LoginHeader'
 import LoginForm from '../../components/login/LoginForm'
+import BrandMark from '../../components/ui/BrandMark'
 
 export default function LoginPage() {
   return (
@@ -14,20 +15,21 @@ export default function LoginPage() {
         p: 2,
       }}
     >
-      <Container maxWidth="sm">
-        <Paper
-          elevation={0}
+      <Container maxWidth="xs">
+        <BrandMark />
+        <Box
           sx={{
-            p: { xs: 3, sm: 5 },
+            background: 'rgba(255,255,255,0.04)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.08)',
             borderRadius: 4,
-            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.5)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            background: '#ffffff',
+            p: { xs: 3, sm: 4 },
+            boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
           }}
         >
           <LoginHeader />
           <LoginForm />
-        </Paper>
+        </Box>
       </Container>
     </Box>
   )
