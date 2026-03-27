@@ -33,7 +33,6 @@ export default function AppNav({ currentPage, userName, onLogout, layoutMode, on
 
   return (
     <Navbar style={navbarStyle}>
-      {/* Logo */}
       <Navbar.Brand onClick={() => navigate('/home')} style={{ cursor: 'pointer', padding: '14px 16px' }}>
         <span style={{
           fontWeight: 800,
@@ -48,7 +47,6 @@ export default function AppNav({ currentPage, userName, onLogout, layoutMode, on
         </span>
       </Navbar.Brand>
 
-      {/* ── Page links ─────────────────────────────────────────────────────── */}
       <Nav appearance="subtle">
         <Nav.Item
           active={currentPage === 'home'}
@@ -68,7 +66,6 @@ export default function AppNav({ currentPage, userName, onLogout, layoutMode, on
         </Nav.Item>
       </Nav>
 
-      {/* ── Layout toggle (home only, hidden on xs) ─────────────────────── */}
       {layoutMode && onLayoutToggle && (
         <Nav appearance="subtle" style={{ display: window.innerWidth < 480 ? 'none' : undefined }}>
           <Nav.Item panel style={{ padding: '8px 6px' }}>
@@ -106,7 +103,6 @@ export default function AppNav({ currentPage, userName, onLogout, layoutMode, on
         </Nav>
       )}
 
-      {/* ── User + Logout (right side) ──────────────────────────────────── */}
       <Nav pullRight appearance="subtle">
         <Nav.Item panel style={{ padding: '8px 8px' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.2 }}>

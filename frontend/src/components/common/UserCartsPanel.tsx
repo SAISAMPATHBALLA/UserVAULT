@@ -31,7 +31,6 @@ export default function UserCartsPanel({ userId, enabled, onClose }: UserCartsPa
         maxHeight: 'calc(90vh / 2.5)',
       }}
     >
-      {/* Header */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2, py: 1.5, flexShrink: 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <ShoppingCartIcon sx={{ color: '#a78bfa', fontSize: '1rem' }} />
@@ -54,7 +53,6 @@ export default function UserCartsPanel({ userId, enabled, onClose }: UserCartsPa
 
       <Divider sx={{ borderColor: 'rgba(167,139,250,0.15)', flexShrink: 0 }} />
 
-      {/* Content */}
       <Box sx={{ overflowY: 'auto', flex: 1, px: 2, py: 1.5,
         '&::-webkit-scrollbar': { width: 4 },
         '&::-webkit-scrollbar-thumb': { background: 'rgba(167,139,250,0.3)', borderRadius: 2 },
@@ -80,7 +78,6 @@ export default function UserCartsPanel({ userId, enabled, onClose }: UserCartsPa
 
         {data && data.carts.map((cart, cartIdx) => (
           <Box key={cart.id} sx={{ mb: cartIdx < data.carts.length - 1 ? 2 : 0 }}>
-            {/* Cart summary */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
               <Typography sx={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.5 }}>
                 Cart #{cart.id} · {cart.totalProducts} item{cart.totalProducts !== 1 ? 's' : ''}
@@ -95,7 +92,6 @@ export default function UserCartsPanel({ userId, enabled, onClose }: UserCartsPa
               </Box>
             </Box>
 
-            {/* Products */}
             {cart.products.map((product) => (
               <Box key={product.id} sx={{ display: 'flex', gap: 1.5, alignItems: 'flex-start', mb: 1 }}>
                 <Avatar

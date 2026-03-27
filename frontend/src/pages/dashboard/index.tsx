@@ -39,8 +39,6 @@ export default function DashboardPage() {
     navigate('/login')
   }
 
-  // ─── Chart options ─────────────────────────────────────────────────────────
-
   const deptOptions: Highcharts.Options = {
     chart: {
       backgroundColor: 'transparent', type: 'bar',
@@ -131,17 +129,14 @@ export default function DashboardPage() {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* ── Shared navbar ──────────────────────────────────────────────────── */}
       <AppNav
         currentPage="dashboard"
         userName={loggedUser.name ?? ''}
         onLogout={handleLogout}
       />
 
-      {/* ── Content ──────────────────────────────────────────────────────── */}
       <Container maxWidth="xl" sx={{ flex: 1, py: { xs: 2, sm: 3 }, px: { xs: 1.5, sm: 3 } }}>
 
-        {/* Title */}
         <Box sx={{ mb: { xs: 2, sm: 3 }, textAlign: 'center' }}>
           <Typography variant="h4" sx={{ color: '#fff', fontWeight: 800, letterSpacing: '-0.5px', mb: 0.5, fontSize: { xs: '1.5rem', sm: '2rem' } }}>
             Analytics Dashboard
@@ -151,7 +146,6 @@ export default function DashboardPage() {
           </Typography>
         </Box>
 
-        {/* ── KPI row ──────────────────────────────────────────────────────── */}
         <Box sx={{
           display: 'grid',
           gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' },
@@ -175,7 +169,6 @@ export default function DashboardPage() {
           )}
         </Box>
 
-        {/* ── Row 1: Dept bar + Top Depts progress ─────────────────────────── */}
         <Box sx={{
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', lg: '1.4fr 1fr' },
@@ -205,7 +198,6 @@ export default function DashboardPage() {
           )}
         </Box>
 
-        {/* ── Row 2: Gender donut + Age column ─────────────────────────────── */}
         <Box sx={{
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
@@ -224,7 +216,6 @@ export default function DashboardPage() {
           )}
         </Box>
 
-        {/* ── Row 3: Eye color pie (full width on mobile, half on sm) ──────── */}
         <Box sx={{
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
@@ -237,7 +228,6 @@ export default function DashboardPage() {
             </Panel>
           )}
 
-          {/* Blood group summary using RSuite Progress */}
           {!isFetching && (
             <Panel
               header={
@@ -258,7 +248,6 @@ export default function DashboardPage() {
   )
 }
 
-// ─── Blood group progress list ────────────────────────────────────────────────
 function BloodGroupList({ users }: { users: User[] }) {
   const bgMap: Record<string, number> = {}
   users.forEach(u => { bgMap[u.bloodGroup] = (bgMap[u.bloodGroup] ?? 0) + 1 })

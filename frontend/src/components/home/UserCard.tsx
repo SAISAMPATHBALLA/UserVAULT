@@ -135,7 +135,6 @@ export default function UserCard({ user, mode, onClick, index }: UserCardProps) 
           p: 0,
         }}
       >
-        {/* Top section: avatar + name/title */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, px: 2, pt: 2, pb: 1.5 }}>
           <Avatar
             src={user.image}
@@ -182,10 +181,8 @@ export default function UserCard({ user, mode, onClick, index }: UserCardProps) 
           </Box>
         </Box>
 
-        {/* Divider */}
         <Box sx={{ height: '1px', background: 'rgba(255,255,255,0.07)', mx: 2 }} />
 
-        {/* Bottom section: dept + email */}
         <Box
           sx={{
             display: 'flex',

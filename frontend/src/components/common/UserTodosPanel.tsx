@@ -34,7 +34,6 @@ export default function UserTodosPanel({ userId, enabled, onClose }: UserTodosPa
         maxHeight: 'calc(90vh / 2.5)',
       }}
     >
-      {/* Header */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2, py: 1.5, flexShrink: 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <ChecklistIcon sx={{ color: '#a78bfa', fontSize: '1rem' }} />
@@ -57,7 +56,6 @@ export default function UserTodosPanel({ userId, enabled, onClose }: UserTodosPa
 
       <Divider sx={{ borderColor: 'rgba(167,139,250,0.15)', flexShrink: 0 }} />
 
-      {/* Content */}
       <Box sx={{ overflowY: 'auto', flex: 1, px: 1.5, py: 1,
         '&::-webkit-scrollbar': { width: 4 },
         '&::-webkit-scrollbar-thumb': { background: 'rgba(167,139,250,0.3)', borderRadius: 2 },
@@ -81,7 +79,6 @@ export default function UserTodosPanel({ userId, enabled, onClose }: UserTodosPa
           </Box>
         )}
 
-        {/* Pending */}
         {pending.length > 0 && (
           <>
             <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.6rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.8, px: 0.5, mb: 0.5 }}>
@@ -103,7 +100,6 @@ export default function UserTodosPanel({ userId, enabled, onClose }: UserTodosPa
           </>
         )}
 
-        {/* Completed */}
         {completed.length > 0 && (
           <>
             {pending.length > 0 && <Divider sx={{ my: 1, borderColor: 'rgba(167,139,250,0.1)' }} />}
