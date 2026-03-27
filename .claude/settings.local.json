@@ -11,7 +11,8 @@
       "Bash(netstat -ano)",
       "Bash(taskkill:*)",
       "Bash(venv/Scripts/python -c \"\nfrom database import engine\nfrom models.userModel import Base\nBase.metadata.drop_all\\(bind=engine\\)\nBase.metadata.create_all\\(bind=engine\\)\nprint\\('Table recreated'\\)\n\" 2>&1)",
-      "Bash(find S:/docs/code/Hivel/User_vault/frontend/src -type f -name *.ts -o -name *.tsx)"
+      "Bash(find S:/docs/code/Hivel/User_vault/frontend/src -type f -name *.ts -o -name *.tsx)",
+      "mcp__ide__getDiagnostics"
     ]
   }
 }

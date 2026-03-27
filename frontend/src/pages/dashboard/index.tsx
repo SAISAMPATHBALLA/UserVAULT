@@ -3,12 +3,12 @@ import { Box, Typography, Button, Paper, Avatar } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout'
 
 export default function DashboardPage() {
-  const navigate = useNavigate()
-  const user = JSON.parse(localStorage.getItem('user') ?? '{}')
-
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user') ?? '{}');
+  
   const handleLogout = () => {
-    localStorage.removeItem('user')
-    navigate('/login')
+    localStorage.removeItem('user');
+    navigate('/login');
   }
 
   return (
