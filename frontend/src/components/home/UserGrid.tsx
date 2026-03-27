@@ -1,16 +1,10 @@
 import { Box, Grid, Skeleton, Alert, Card } from '@mui/material'
 import type { User } from '../../types/Users'
 import UserCard from './UserCard'
+import { USER_FETCH_LIMIT_IN_SINGLE_CALL } from '../../constants/authConstants'
+import type { UserGridProps } from '../../types/props'
 
-interface UserGridProps {
-  users: User[]
-  mode: 'grid' | 'list'
-  onUserClick: (id: number) => void
-  isFetching: boolean
-  isError: boolean
-}
-
-const SKELETON_COUNT = 12
+const SKELETON_COUNT = USER_FETCH_LIMIT_IN_SINGLE_CALL;
 
 function GridSkeleton({ mode }: { mode: 'grid' | 'list' }) {
   if (mode === 'list') {

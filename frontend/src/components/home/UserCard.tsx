@@ -11,13 +11,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
 import type { User } from '../../types/Users'
 import { getInitials } from '../../utils/userFormatters'
-
-interface UserCardProps {
-  user: User
-  mode: 'grid' | 'list'
-  onClick: () => void
-  index: number
-}
+import type { UserCardProps } from '../../types/props'
 
 const fadeSlideUp = {
   '@keyframes fadeSlideUp': {

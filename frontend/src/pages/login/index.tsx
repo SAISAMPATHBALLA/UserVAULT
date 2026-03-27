@@ -7,7 +7,7 @@ export default function LoginPage() {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #f5f7fa 0%, #e8eaf6 100%)',
+        background: 'linear-gradient(135deg, #000000 0%, #5d2424 0%, #010000 60%, #303031 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -20,8 +20,8 @@ export default function LoginPage() {
           sx={{
             p: { xs: 3, sm: 5 },
             borderRadius: 4,
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.08)',
-            border: '1px solid rgba(255,255,255,0.8)',
+            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.5)',
+            border: '1px solid rgba(255,255,255,0.12)',
             background: '#ffffff',
           }}
         >
