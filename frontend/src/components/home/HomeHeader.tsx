@@ -9,13 +9,8 @@ import {
 import ViewModuleIcon from '@mui/icons-material/ViewModule'
 import ViewListIcon from '@mui/icons-material/ViewList'
 import LogoutIcon from '@mui/icons-material/Logout'
+import type { HomeHeaderProps } from '../../types/props'
 
-interface HomeHeaderProps {
-  layoutMode: 'grid' | 'list'
-  onLayoutToggle: (mode: 'grid' | 'list') => void
-  onLogout: () => void
-  userName: string
-}
 
 export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userName }: HomeHeaderProps) {
   const initial = userName ? userName.charAt(0).toUpperCase() : 'U'

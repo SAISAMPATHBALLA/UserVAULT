@@ -9,22 +9,10 @@ import {
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
-import type { User } from '../../types/Users'
 import { getInitials } from '../../utils/userFormatters'
+import type { UserCardProps } from '../../types/props'
+import { fadeSlideUp } from '../../styles/butonStyles'
 
-interface UserCardProps {
-  user: User
-  mode: 'grid' | 'list'
-  onClick: () => void
-  index: number
-}
-
-const fadeSlideUp = {
-  '@keyframes fadeSlideUp': {
-    from: { opacity: 0, transform: 'translateY(20px)' },
-    to: { opacity: 1, transform: 'translateY(0)' },
-  },
-}
 
 export default function UserCard({ user, mode, onClick, index }: UserCardProps) {
   const initials = getInitials(user.firstName, user.lastName)

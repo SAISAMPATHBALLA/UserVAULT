@@ -1,12 +1,5 @@
 import { Box, Pagination } from '@mui/material'
-
-interface PaginationBarProps {
-  total: number
-  limit: number
-  skip: number
-  onChange: (newSkip: number) => void
-  hidden: boolean
-}
+import type { PaginationBarProps } from '../../types/props'
 
 export default function PaginationBar({ total, limit, skip, onChange, hidden }: PaginationBarProps) {
   if (hidden || total === 0) return null
