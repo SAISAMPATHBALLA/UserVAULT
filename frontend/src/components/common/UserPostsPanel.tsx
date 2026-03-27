@@ -34,7 +34,6 @@ export default function UserPostsPanel({ userId, enabled, onClose }: UserPostsPa
         maxHeight: 'calc(90vh / 2.5)',
       }}
     >
-      {/* Header */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2, py: 1.5, flexShrink: 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <ArticleIcon sx={{ color: '#a78bfa', fontSize: '1rem' }} />
@@ -57,7 +56,6 @@ export default function UserPostsPanel({ userId, enabled, onClose }: UserPostsPa
 
       <Divider sx={{ borderColor: 'rgba(167,139,250,0.15)', flexShrink: 0 }} />
 
-      {/* Content */}
       <Box sx={{ overflowY: 'auto', flex: 1, px: 2, py: 1.5,
         '&::-webkit-scrollbar': { width: 4 },
         '&::-webkit-scrollbar-thumb': { background: 'rgba(167,139,250,0.3)', borderRadius: 2 },
@@ -83,17 +81,14 @@ export default function UserPostsPanel({ userId, enabled, onClose }: UserPostsPa
 
         {data && data.posts.map((post, idx) => (
           <Box key={post.id} sx={{ mb: 2 }}>
-            {/* Title */}
             <Typography sx={{ color: '#e2e8f0', fontSize: '0.8rem', fontWeight: 700, lineHeight: 1.4, mb: 0.5 }}>
               {post.title}
             </Typography>
 
-            {/* Body preview */}
             <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.72rem', lineHeight: 1.5, mb: 1 }}>
               {post.body.length > 90 ? post.body.slice(0, 90) + '…' : post.body}
             </Typography>
 
-            {/* Tags */}
             {post.tags.length > 0 && (
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1 }}>
                 {post.tags.map((tag) => (
@@ -107,7 +102,6 @@ export default function UserPostsPanel({ userId, enabled, onClose }: UserPostsPa
               </Box>
             )}
 
-            {/* Reactions + views */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.4 }}>
                 <ThumbUpOutlinedIcon sx={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.35)' }} />

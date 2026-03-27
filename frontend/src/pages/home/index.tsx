@@ -29,7 +29,6 @@ export default function HomePage() {
   const isSearching = debouncedSearch.trim().length > 0
   const isFilteringByHair = hairColorFilter !== null && !isSearching
 
-  // Reset pagination when debounced search changes
   useEffect(() => { setSkip(0) }, [debouncedSearch])
 
   function handleHairColorChange(color: string | null) {
@@ -64,7 +63,6 @@ export default function HomePage() {
     navigate('/login')
   }
 
-  // Subtitle text
   const subtitle = isSearching
     ? `Showing results for "${debouncedSearch}"`
     : isFilteringByHair
@@ -90,7 +88,6 @@ export default function HomePage() {
       />
 
       <Container maxWidth="xl" sx={{ flex: 1, py: 3, px: { xs: 2, sm: 3 } }}>
-        {/* Page title */}
         <Box sx={{ mb: 3, textAlign: 'center' }}>
           <Typography variant="h4" sx={{ color: '#fff', fontWeight: 800, letterSpacing: '-0.5px', mb: 0.5 }}>
             User Directory

@@ -12,7 +12,10 @@
       "Bash(taskkill:*)",
       "Bash(venv/Scripts/python -c \"\nfrom database import engine\nfrom models.userModel import Base\nBase.metadata.drop_all\\(bind=engine\\)\nBase.metadata.create_all\\(bind=engine\\)\nprint\\('Table recreated'\\)\n\" 2>&1)",
       "Bash(find S:/docs/code/Hivel/User_vault/frontend/src -type f -name *.ts -o -name *.tsx)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(find /s/docs/code/Hivel/User_vault -type f -name *)",
+      "Bash(/tmp/tree.txt:*)",
+      "Read(//tmp/**)"
     ]
   }
 }

@@ -48,7 +48,6 @@ export function SectionLabel({ label, icon }: { label: string; icon: React.React
   )
 }
 
-// ─── Section card wrapper ─────────────────────────────────────────────────────
 export function SectionCard({ children }: { children: React.ReactNode }) {
   return (
     <Box sx={{
@@ -63,7 +62,6 @@ export function SectionCard({ children }: { children: React.ReactNode }) {
   )
 }
 
-// ─── Info row (dark theme) ────────────────────────────────────────────────────
 export function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, mb: 1.5, '&:last-child': { mb: 0 } }}>
@@ -87,7 +85,6 @@ export function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: 
   )
 }
 
-// ─── Truncated row with tooltip ───────────────────────────────────────────────
 export function TruncatedInfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5, mb: 1.5, '&:last-child': { mb: 0 } }}>
@@ -113,7 +110,6 @@ export function TruncatedInfoRow({ icon, label, value }: { icon: React.ReactNode
   )
 }
 
-// ─── Masked row with reveal toggle ───────────────────────────────────────────
 export function MaskedInfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   const [revealed, setRevealed] = useState(false)
   const display = revealed ? value : value.replace(/^\d{3}-\d{2}-/, '•••-••-')

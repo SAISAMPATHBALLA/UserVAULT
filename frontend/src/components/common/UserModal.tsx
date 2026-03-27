@@ -38,15 +38,11 @@ import UserPostsPanel from './UserPostsPanel'
 import UserTodosPanel from './UserTodosPanel'
 import type { UserModalProps } from '../../types/props'
 import { activeBtn, inactiveBtn } from '../../styles/butonStyles'
-// ─── Main component ───────────────────────────────────────────────────────────
 export default function UserModal({ userId, open, onClose }: UserModalProps) {
   const theme = useTheme()
 
-  // <600px  → fullscreen, panels inside paper
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
-  // 600-899px → compact two-column
   const isSmBreak = useMediaQuery(theme.breakpoints.between('md', 'lg'))
-  // ≥1300px → wide three-column (bank left | modal center | panels right)
   const isWide = useMediaQuery('(min-width: 1300px)')
 
   const [showBank, setShowBank] = useState(false)
@@ -64,15 +60,12 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
   const hasRightPanels = showCarts || showPosts || showTodos
   const hasAnyPanel = showBank || hasRightPanels
 
-  // Panel column width per breakpoint
   const panelColWidth = isWide ? 380 : isSmBreak ? 340 : 280
 
-  // Whether panels go in the right column vs inside the paper
   const panelsInPaper = isMobile
 
   return (
     <Modal open={open} onClose={handleClose} sx={{ overflowY: 'auto', overflowX: 'hidden' }}>
-      {/* ── Outer flex container ─────────────────────────────────────────── */}
       <Box sx={{
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
@@ -86,7 +79,6 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
         overflowX: 'hidden',
       }}>
 
-        {/* ── LEFT: Bank (wide three-col only) ─────────────────────────── */}
         {isWide && (
           <Box sx={{ width: 340, flexShrink: 0, alignSelf: 'flex-start', visibility: showBank ? 'visible' : 'hidden' }}>
             {showBank && user && (
@@ -95,11 +87,9 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
           </Box>
         )}
 
-        {/* ── CENTER/LEFT: Modal paper ──────────────────────────────────── */}
         <Box
           onClick={(e) => e.stopPropagation()}
           sx={{
-            // Wide: fixed 560px. Mobile: 100%. Medium: flex:1 with cap.
             width: isWide ? 560 : isMobile ? '100%' : undefined,
             flex: (!isWide && !isMobile) ? 1 : undefined,
             maxWidth: (!isWide && !isMobile) ? 520 : undefined,
@@ -115,14 +105,12 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
             '&::-webkit-scrollbar-thumb': { background: 'rgba(167,139,250,0.3)', borderRadius: 3 },
           }}
         >
-          {/* Loading */}
           {isLoading && (
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 300 }}>
               <CircularProgress sx={{ color: '#a78bfa' }} />
             </Box>
           )}
 
-          {/* Error */}
           {isError && !isLoading && (
             <Box sx={{ p: 3 }}>
               <Alert severity="error" sx={{ borderRadius: 2 }}>Failed to load user details.</Alert>
@@ -134,7 +122,6 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
 
           {user && !isLoading && (
             <>
-              {/* ── Sticky gradient header ──────────────────────────────── */}
               <Box sx={{
                 background: 'linear-gradient(135deg, #1a0533 0%, #2d1b69 60%, #0f0a1e 100%)',
                 px: 3, pt: 3, pb: 5,
@@ -156,7 +143,6 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
                       sx={{ width: 72, height: 72, border: '2px solid rgba(167,139,250,0.5)', fontSize: '1.5rem', fontWeight: 700, background: 'rgba(167,139,250,0.2)' }}>
                       {getInitials(user.firstName, user.lastName)}
                     </Avatar>
-                    {/* Online dot */}
                     <Box sx={{ position: 'absolute', bottom: 3, right: 3, width: 12, height: 12, borderRadius: '50%', background: '#22c55e', border: '2px solid #1a0533' }} />
                   </Box>
                   <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -174,10 +160,8 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
                 </Box>
               </Box>
 
-              {/* ── Content sections ────────────────────────────────────── */}
               <Box sx={{ px: 2.5, pt: 1, pb: 1, flex: 1 }}>
 
-                {/* Contact */}
                 <SectionLabel label="Contact" icon={<EmailOutlinedIcon sx={{ fontSize: '0.9rem' }} />} />
                 <SectionCard>
                   <InfoRow icon={<EmailOutlinedIcon sx={{ fontSize: '0.9rem' }} />} label="Email" value={user.email} />
@@ -185,7 +169,6 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
                   <InfoRow icon={<LocationOnOutlinedIcon sx={{ fontSize: '0.9rem' }} />} label="Address" value={formatAddress(user.address)} />
                 </SectionCard>
 
-                {/* Personal */}
                 <SectionLabel label="Personal" icon={<PersonOutlineIcon sx={{ fontSize: '0.9rem' }} />} />
                 <SectionCard>
                   <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 8px' }}>
@@ -200,7 +183,6 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
                   </Box>
                 </SectionCard>
 
-                {/* Company */}
                 <SectionLabel label="Company" icon={<WorkOutlineIcon sx={{ fontSize: '0.9rem' }} />} />
                 <SectionCard>
                   <InfoRow icon={<WorkOutlineIcon sx={{ fontSize: '0.9rem' }} />} label="Company" value={user.company.name} />
@@ -209,13 +191,11 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
                   <InfoRow icon={<BusinessIcon sx={{ fontSize: '0.9rem' }} />} label="Office Address" value={formatAddress(user.company.address)} />
                 </SectionCard>
 
-                {/* Education */}
                 <SectionLabel label="Education" icon={<SchoolOutlinedIcon sx={{ fontSize: '0.9rem' }} />} />
                 <SectionCard>
                   <InfoRow icon={<SchoolOutlinedIcon sx={{ fontSize: '0.9rem' }} />} label="University" value={user.university} />
                 </SectionCard>
 
-                {/* Network */}
                 <SectionLabel label="Network & Device" icon={<RouterIcon sx={{ fontSize: '0.9rem' }} />} />
                 <SectionCard>
                   <InfoRow icon={<RouterIcon sx={{ fontSize: '0.9rem' }} />} label="IP Address" value={user.ip} />
@@ -223,14 +203,12 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
                   <TruncatedInfoRow icon={<LaptopIcon sx={{ fontSize: '0.9rem' }} />} label="User Agent" value={user.userAgent} />
                 </SectionCard>
 
-                {/* Identity */}
                 <SectionLabel label="Identity" icon={<BadgeIcon sx={{ fontSize: '0.9rem' }} />} />
                 <SectionCard>
                   <InfoRow icon={<BadgeIcon sx={{ fontSize: '0.9rem' }} />} label="EIN" value={user.ein} />
                   <MaskedInfoRow icon={<LockOutlinedIcon sx={{ fontSize: '0.9rem' }} />} label="SSN" value={user.ssn} />
                 </SectionCard>
 
-                {/* Crypto */}
                 <SectionLabel label="Crypto" icon={<CurrencyBitcoinIcon sx={{ fontSize: '0.9rem' }} />} />
                 <SectionCard>
                   <InfoRow icon={<CurrencyBitcoinIcon sx={{ fontSize: '0.9rem' }} />} label="Coin" value={user.crypto.coin} />
@@ -239,7 +217,6 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
                 </SectionCard>
               </Box>
 
-              {/* Panels inside paper — mobile only */}
               {panelsInPaper && hasAnyPanel && (
                 <Box sx={{ px: 2, pb: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
                   {showBank && <BankCard bank={user.bank} userName={`${user.firstName} ${user.lastName}`} onClose={() => setShowBank(false)} />}
@@ -249,7 +226,6 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
                 </Box>
               )}
 
-              {/* ── Sticky footer ───────────────────────────────────────── */}
               <Box sx={{
                 position: 'sticky', bottom: 0, zIndex: 2,
                 borderTop: '1px solid rgba(255,255,255,0.06)',
@@ -283,14 +259,11 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
           )}
         </Box>
 
-        {/* ── RIGHT: Panels column (non-mobile) ─────────────────────────── */}
         {!isMobile && (
           <Box sx={{
             width: panelColWidth,
             flexShrink: 0,
             alignSelf: 'flex-start',
-            // Medium screens: all panels go here (including bank).
-            // Wide: only cart/posts/todos (bank is left column).
             visibility: (isWide ? hasRightPanels : hasAnyPanel) ? 'visible' : 'hidden',
             display: 'flex',
             flexDirection: 'column',
@@ -300,7 +273,6 @@ export default function UserModal({ userId, open, onClose }: UserModalProps) {
             '&::-webkit-scrollbar': { width: 4 },
             '&::-webkit-scrollbar-thumb': { background: 'rgba(167,139,250,0.25)', borderRadius: 2 },
           }}>
-            {/* Bank goes in this column on medium screens */}
             {!isWide && showBank && user && (
               <BankCard bank={user.bank} userName={`${user.firstName} ${user.lastName}`} onClose={() => setShowBank(false)} />
             )}

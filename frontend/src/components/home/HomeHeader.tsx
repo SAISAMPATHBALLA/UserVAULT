@@ -32,7 +32,6 @@ export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userN
         zIndex: 100,
       }}
     >
-      {/* Logo */}
       <Typography
         variant="h5"
         sx={{
@@ -48,7 +47,6 @@ export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userN
         UserVault
       </Typography>
 
-      {/* Center nav */}
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
         {onDashboard && (
           <Button
@@ -66,7 +64,6 @@ export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userN
         )}
       </Box>
 
-      {/* Layout toggle — hidden on mobile */}
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 0.5 }}>
         <Tooltip title="Grid view">
           <IconButton
@@ -96,7 +93,6 @@ export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userN
         </Tooltip>
       </Box>
 
-      {/* User + Logout */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
         <Avatar
           sx={{

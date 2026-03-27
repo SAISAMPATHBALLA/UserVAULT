@@ -15,7 +15,7 @@ export default function BankCard({ bank, userName, onClose }: BankCardProps) {
   const rawNumber = bank.cardNumber.replace(/\s/g, '')
   const last4 = rawNumber.slice(-4)
   const displayNumber = numberVisible
-    ? bank.cardNumber  // show as-is from API (may have spaces)
+    ? bank.cardNumber
     : `•••• •••• •••• ${last4}`
 
   return (
@@ -29,7 +29,6 @@ export default function BankCard({ bank, userName, onClose }: BankCardProps) {
         boxShadow: '0 25px 50px rgba(0,0,0,0.7)',
       }}
     >
-      {/* Panel header */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1.5 }}>
         <Typography sx={{ color: '#a78bfa', fontWeight: 700, fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: 1 }}>
           Bank Details
@@ -40,7 +39,6 @@ export default function BankCard({ bank, userName, onClose }: BankCardProps) {
         </IconButton>
       </Box>
 
-      {/* Card visual */}
       <Box sx={{
         position: 'relative',
         width: '100%',
@@ -50,14 +48,11 @@ export default function BankCard({ bank, userName, onClose }: BankCardProps) {
         background: 'linear-gradient(135deg, #1a0533 0%, #4c1d95 55%, #1a1a4e 100%)',
         boxShadow: '0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06)',
       }}>
-        {/* Gloss */}
         <Box sx={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.08), transparent 60%)' }} />
 
-        {/* Decorative circles */}
         <Box sx={{ position: 'absolute', top: -60, right: -40, width: 200, height: 200, borderRadius: '50%', background: 'rgba(167,139,250,0.07)' }} />
         <Box sx={{ position: 'absolute', bottom: -70, left: -50, width: 220, height: 220, borderRadius: '50%', background: 'rgba(124,58,237,0.08)' }} />
 
-        {/* EMV Chip */}
         <Box sx={{
           position: 'absolute', top: 20, left: 20,
           width: 44, height: 34, borderRadius: '6px',
@@ -66,14 +61,12 @@ export default function BankCard({ bank, userName, onClose }: BankCardProps) {
           boxShadow: 'inset 14px 0 0 -13px rgba(0,0,0,0.25), inset 0 11px 0 -10px rgba(0,0,0,0.25)',
         }} />
 
-        {/* Contactless icon */}
         <Tooltip title="Contactless" placement="left">
           <Box sx={{ position: 'absolute', top: 20, right: 20 }}>
             <WifiIcon sx={{ color: 'rgba(255,255,255,0.65)', fontSize: '1.4rem', transform: 'rotate(90deg)' }} />
           </Box>
         </Tooltip>
 
-        {/* Card number + toggle */}
         <Box sx={{ position: 'absolute', top: 72, left: 20, right: 16, display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <Typography sx={{
             fontFamily: '"Courier New", monospace',
@@ -95,7 +88,6 @@ export default function BankCard({ bank, userName, onClose }: BankCardProps) {
           </IconButton>
         </Box>
 
-        {/* Bottom row */}
         <Box sx={{ position: 'absolute', bottom: 16, left: 20, right: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <Box>
             <Typography sx={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.5)', letterSpacing: '0.8px', textTransform: 'uppercase' }}>
@@ -121,7 +113,6 @@ export default function BankCard({ bank, userName, onClose }: BankCardProps) {
         </Box>
       </Box>
 
-      {/* Below-card info */}
       <Divider sx={{ my: 1.5, borderColor: 'rgba(167,139,250,0.15)' }} />
       <DarkInfoRow icon={<AccountBalanceIcon sx={{ fontSize: '1rem' }} />} label="IBAN" value={bank.iban} />
       <DarkInfoRow icon={<CurrencyExchangeIcon sx={{ fontSize: '1rem' }} />} label="Currency" value={bank.currency} />

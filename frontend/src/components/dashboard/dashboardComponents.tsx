@@ -14,7 +14,6 @@ export function KpiCard({ icon, label, value, accent, tag }: {
         alignItems: 'center',
         gap: { xs: 1, sm: 1.5, md: 2 },
       }}>
-        {/* Icon box — shrinks on xs */}
         <Box sx={{
           width: { xs: 34, sm: 40, md: 46 },
           height: { xs: 34, sm: 40, md: 46 },
@@ -29,7 +28,6 @@ export function KpiCard({ icon, label, value, accent, tag }: {
           {icon}
         </Box>
 
-        {/* Text — clips gracefully at any width */}
         <Box sx={{ minWidth: 0, flex: 1 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.6, mb: 0.2, flexWrap: 'wrap' }}>
             <Typography sx={{

@@ -31,7 +31,6 @@ body {
   padding: 16px;
 }
 
-/* KPI card tighter padding on small screens */
 @media (max-width: 599px) {
   .rs-panel.kpi-card .rs-panel-body {
     padding: 12px 10px !important;
