@@ -11,12 +11,7 @@ import {
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import CloseIcon from '@mui/icons-material/Close'
 import { useGetUserCartsByIdQuery } from '../../apis/getUserDetails'
-
-interface UserCartsPanelProps {
-  userId: number
-  enabled: boolean
-  onClose: () => void
-}
+import type { UserCartsPanelProps } from '../../types/UserCart'
 
 export default function UserCartsPanel({ userId, enabled, onClose }: UserCartsPanelProps) {
   const { data, isLoading, isError } = useGetUserCartsByIdQuery(userId, { skip: !enabled })

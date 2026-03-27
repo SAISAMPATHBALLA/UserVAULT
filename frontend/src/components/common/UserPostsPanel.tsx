@@ -13,12 +13,8 @@ import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined'
 import CloseIcon from '@mui/icons-material/Close'
 import { useGetUserPostsByIdQuery } from '../../apis/getUserDetails'
+import type { UserPostsPanelProps } from '../../types/UserPosts'
 
-interface UserPostsPanelProps {
-  userId: number
-  enabled: boolean
-  onClose: () => void
-}
 
 export default function UserPostsPanel({ userId, enabled, onClose }: UserPostsPanelProps) {
   const { data, isLoading, isError } = useGetUserPostsByIdQuery(userId, { skip: !enabled })

@@ -11,7 +11,7 @@ import {
 import ChecklistIcon from '@mui/icons-material/Checklist'
 import CloseIcon from '@mui/icons-material/Close'
 import { useGetUserTodosByIdQuery } from '../../apis/getUserDetails'
-
+import type { UserTodosPanelProps } from '../../types/UserTodos'
 
 export default function UserTodosPanel({ userId, enabled, onClose }: UserTodosPanelProps) {
   const { data, isLoading, isError } = useGetUserTodosByIdQuery(userId, { skip: !enabled })

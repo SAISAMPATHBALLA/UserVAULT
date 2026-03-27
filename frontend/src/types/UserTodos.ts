@@ -11,3 +11,10 @@ export interface TodosResponse {
   skip: number
   limit: number
 }
+
+
+export interface UserTodosPanelProps {
+  userId: number
+  enabled: boolean
+  onClose: () => void
+}

@@ -25,3 +25,8 @@ export interface CartsResponse {
   skip: number
   limit: number
 }
+export interface UserCartsPanelProps {
+  userId: number
+  enabled: boolean
+  onClose: () => void
+}

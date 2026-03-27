@@ -19,3 +19,9 @@ export interface PostsResponse {
   skip: number
   limit: number
 }
+
+export interface UserPostsPanelProps {
+  userId: number
+  enabled: boolean
+  onClose: () => void
+}
