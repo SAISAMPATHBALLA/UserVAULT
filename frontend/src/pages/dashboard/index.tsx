@@ -1,17 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { Box, Typography, Button, Paper, Avatar } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout'
-import { useGetUserCartsByIdQuery, useGetUserPostsByIdQuery, useGetUserTodosByIdQuery, useUsersByHairColorQuery } from '../../apis/getUserDetails'
 
 export default function DashboardPage() {
-  const navigate = useNavigate()
-  const user = JSON.parse(localStorage.getItem('user') ?? '{}')
-  const data = useGetUserTodosByIdQuery(6);
-  console.log(data.data);
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user') ?? '{}');
   
   const handleLogout = () => {
-    localStorage.removeItem('user')
-    navigate('/login')
+    localStorage.removeItem('user');
+    navigate('/login');
   }
 
   return (

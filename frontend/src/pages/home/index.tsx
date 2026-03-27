@@ -8,8 +8,9 @@ import SearchBar from '../../components/home/SearchBar'
 import UserGrid from '../../components/home/UserGrid'
 import PaginationBar from '../../components/home/PaginationBar'
 import UserModal from '../../components/common/UserModal'
+import { USER_FETCH_LIMIT_IN_SINGLE_CALL } from '../../constants/authConstants'
 
-const LIMIT = 12
+const LIMIT = USER_FETCH_LIMIT_IN_SINGLE_CALL;
 
 export default function HomePage() {
   const navigate = useNavigate()
@@ -44,15 +45,16 @@ export default function HomePage() {
   const userName: string = storedUser ? (JSON.parse(storedUser)?.name ?? '') : ''
 
   function handleLogout() {
-    localStorage.removeItem('user')
-    navigate('/login')
+    localStorage.removeItem('user');
+    navigate('/login');
   }
 
   return (
     <Box
       sx={{
+        margin:0,
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #0f0c29 0%, #302b63 60%, #24243e 100%)',
+        background: 'linear-gradient(135deg, #000000 0%, #5d2424 0%, #010000 60%, #303031 100%)',
         display: 'flex',
         flexDirection: 'column',
       }}

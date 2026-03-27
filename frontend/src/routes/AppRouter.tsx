@@ -11,7 +11,7 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/" element={<ProtectedRouteforAuth><Navigate to="/home" replace /></ProtectedRouteforAuth>} />
         <Route path="/register" element={<ProtectedRouteforAuth><RegisterPage /></ProtectedRouteforAuth>} />
         <Route path="/login" element={<ProtectedRouteforAuth><LoginPage /></ProtectedRouteforAuth>} />
         <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
