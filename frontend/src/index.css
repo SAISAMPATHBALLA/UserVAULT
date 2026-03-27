@@ -31,6 +31,18 @@ body {
   padding: 16px;
 }
 
+/* KPI card tighter padding on small screens */
+@media (max-width: 599px) {
+  .rs-panel.kpi-card .rs-panel-body {
+    padding: 12px 10px !important;
+  }
+}
+@media (min-width: 600px) and (max-width: 1199px) {
+  .rs-panel.kpi-card .rs-panel-body {
+    padding: 14px 12px !important;
+  }
+}
+
 .rs-progress-line-bg {
   background-color: #7c3aed !important;
 }
