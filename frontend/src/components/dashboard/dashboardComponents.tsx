@@ -6,25 +6,58 @@ export function KpiCard({ icon, label, value, accent, tag }: {
 }) {
   return (
     <Panel
-      className="app-glass-panel"
+      className="app-glass-panel kpi-card"
       style={{ background: 'rgba(255,255,255,0.035)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12 }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: { xs: 1, sm: 1.5, md: 2 },
+      }}>
+        {/* Icon box — shrinks on xs */}
         <Box sx={{
-          width: 46, height: 46, borderRadius: 2.5, flexShrink: 0,
-          background: `${accent}20`, border: `1px solid ${accent}44`,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', color: accent,
+          width: { xs: 34, sm: 40, md: 46 },
+          height: { xs: 34, sm: 40, md: 46 },
+          borderRadius: { xs: 2, sm: 2.5 },
+          flexShrink: 0,
+          background: `${accent}20`,
+          border: `1px solid ${accent}44`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: accent,
+          '& svg': { fontSize: { xs: '1rem', sm: '1.2rem', md: '1.4rem' } },
         }}>
           {icon}
         </Box>
-        <Box sx={{ minWidth: 0 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8, mb: 0.3 }}>
-            <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.68rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 0.7 }}>
+
+        {/* Text — clips gracefully at any width */}
+        <Box sx={{ minWidth: 0, flex: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.6, mb: 0.2, flexWrap: 'wrap' }}>
+            <Typography sx={{
+              color: 'rgba(255,255,255,0.4)',
+              fontSize: { xs: '0.6rem', sm: '0.65rem', md: '0.68rem' },
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: 0.6,
+              lineHeight: 1,
+              whiteSpace: 'nowrap',
+            }}>
               {label}
             </Typography>
-            {tag && <Tag size="sm" style={{ background: `${accent}25`, color: accent, border: 'none', fontSize: '0.6rem', padding: '0 5px' }}>{tag}</Tag>}
+            {tag && (
+              <Tag size="sm" style={{
+                background: `${accent}25`, color: accent, border: 'none',
+                fontSize: '0.58rem', padding: '0 4px', lineHeight: '16px',
+              }}>
+                {tag}
+              </Tag>
+            )}
           </Box>
-          <Typography sx={{ color: '#fff', fontSize: '1.55rem', fontWeight: 800, lineHeight: 1.2 }}>
+          <Typography sx={{
+            color: '#fff',
+            fontSize: { xs: '1.2rem', sm: '1.35rem', md: '1.55rem' },
+            fontWeight: 800,
+            lineHeight: 1.15,
+          }}>
             {value}
           </Typography>
         </Box>
