@@ -1,76 +1,7 @@
-import { Box, Grid, Skeleton, Alert, Card } from '@mui/material'
-import type { User } from '../../types/Users'
 import UserCard from './UserCard'
-import { USER_FETCH_LIMIT_IN_SINGLE_CALL } from '../../constants/authConstants'
 import type { UserGridProps } from '../../types/props'
-
-const SKELETON_COUNT = USER_FETCH_LIMIT_IN_SINGLE_CALL;
-
-function GridSkeleton({ mode }: { mode: 'grid' | 'list' }) {
-  if (mode === 'list') {
-    return (
-      <Box>
-        {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-          <Card
-            key={i}
-            elevation={0}
-            sx={{
-              mb: 1,
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderLeft: '3px solid rgba(167,139,250,0.25)',
-              borderRadius: 2,
-              background: 'rgba(255,255,255,0.04)',
-              backdropFilter: 'blur(20px)',
-              p: 2,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 2,
-            }}
-          >
-            <Skeleton variant="circular" width={44} height={44} sx={{ bgcolor: 'rgba(255,255,255,0.08)' }} />
-            <Box sx={{ flex: 1 }}>
-              <Skeleton variant="text" width="40%" height={18} sx={{ bgcolor: 'rgba(255,255,255,0.08)' }} />
-              <Skeleton variant="text" width="60%" height={14} sx={{ bgcolor: 'rgba(255,255,255,0.05)' }} />
-            </Box>
-          </Card>
-        ))}
-      </Box>
-    )
-  }
-
-  return (
-    <Grid container spacing={2}>
-      {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
-        <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={i}>
-          <Card
-            elevation={0}
-            sx={{
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderLeft: '3px solid rgba(167,139,250,0.25)',
-              borderRadius: 2.5,
-              background: 'rgba(255,255,255,0.04)',
-              backdropFilter: 'blur(20px)',
-              overflow: 'hidden',
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, px: 2, pt: 2, pb: 1.5 }}>
-              <Skeleton variant="circular" width={52} height={52} sx={{ bgcolor: 'rgba(255,255,255,0.08)', flexShrink: 0 }} />
-              <Box sx={{ flex: 1, minWidth: 0 }}>
-                <Skeleton variant="text" width="70%" height={18} sx={{ bgcolor: 'rgba(255,255,255,0.08)' }} />
-                <Skeleton variant="text" width="50%" height={14} sx={{ bgcolor: 'rgba(255,255,255,0.05)' }} />
-              </Box>
-            </Box>
-            <Box sx={{ height: '1px', background: 'rgba(255,255,255,0.07)', mx: 2 }} />
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2, py: 1.25 }}>
-              <Skeleton variant="rounded" width={70} height={20} sx={{ bgcolor: 'rgba(255,255,255,0.06)', borderRadius: 5 }} />
-              <Skeleton variant="text" width="35%" height={14} sx={{ bgcolor: 'rgba(255,255,255,0.05)' }} />
-            </Box>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-  )
-}
+import { GridSkeleton } from '../ui/modalComponents'
+import { Box, Grid, Alert } from '@mui/material'
 
 export default function UserGrid({ users, mode, onUserClick, isFetching, isError }: UserGridProps) {
   if (isFetching) {

@@ -37,24 +37,7 @@ import UserCartsPanel from './UserCartsPanel'
 import UserPostsPanel from './UserPostsPanel'
 import UserTodosPanel from './UserTodosPanel'
 import type { UserModalProps } from '../../types/props'
-
-
-// ─── Section label with gradient lines ───────────────────────────────────────
-
-
-// ─── Button styles ────────────────────────────────────────────────────────────
-const activeBtn = {
-  background: 'linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%)',
-  color: '#fff',
-  boxShadow: '0 4px 12px rgba(167,139,250,0.35)',
-  '&:hover': { background: 'linear-gradient(135deg, #c4b5fd 0%, #a78bfa 100%)' },
-}
-const inactiveBtn = {
-  borderColor: 'rgba(167,139,250,0.25)',
-  color: '#c4b5fd',
-  '&:hover': { borderColor: '#a78bfa', background: 'rgba(167,139,250,0.08)' },
-}
-
+import { activeBtn, inactiveBtn } from '../../styles/butonStyles'
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function UserModal({ userId, open, onClose }: UserModalProps) {
   const theme = useTheme()

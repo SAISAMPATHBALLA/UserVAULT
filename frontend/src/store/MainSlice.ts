@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { data } from '../types/AuthService'
 export const counterSlice = createSlice({
   name: 'counter',
   initialState: {
