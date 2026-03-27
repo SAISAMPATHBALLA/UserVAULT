@@ -1,13 +1,16 @@
-import { Box, Container, Paper } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import RegisterHeader from '../../components/register/RegisterHeader'
 import RegisterForm from '../../components/register/RegisterForm'
-import { useGetUserDetailsQuery } from '../../apis/getUserDetails';
+import BrandMark from '../../components/ui/BrandMark'
+import { useGetUserDetailsQuery } from '../../apis/getUserDetails'
+
 export default function RegisterPage() {
-    const response = useGetUserDetailsQuery();
-  console.log(response);
+  useGetUserDetailsQuery()
+
   return (
     <Box
       sx={{
+        
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #000000 0%, #5d2424 0%, #010000 60%, #303031 100%)',
         display: 'flex',
@@ -16,20 +19,22 @@ export default function RegisterPage() {
         p: 2,
       }}
     >
-      <Container maxWidth="sm">
-        <Paper
-          elevation={0}
+      <Container maxWidth="xs">
+        <BrandMark />
+        <Box
           sx={{
-            p: { xs: 3, sm: 5 },
+            maxWidth: { xs: '100%', sm: 420, md: 500 },
+            background: 'rgba(255,255,255,0.04)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.08)',
             borderRadius: 4,
-            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.5)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            background: '#ffffff',
+            p: { xs: 3, sm: 4 },
+            boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
           }}
         >
           <RegisterHeader />
           <RegisterForm />
-        </Paper>
+        </Box>
       </Container>
     </Box>
   )
