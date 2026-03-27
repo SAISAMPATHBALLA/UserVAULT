@@ -49,7 +49,7 @@ export default function HomeHeader({ layoutMode, onLayoutToggle, onLogout, userN
           backgroundClip: 'text',
         }}
       >
-        Hivel
+        UserVault
       </Typography>
 
       {/* Layout toggle — hidden on mobile */}
